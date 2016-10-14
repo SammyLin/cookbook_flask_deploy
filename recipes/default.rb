@@ -1,7 +1,7 @@
 include_recipe 'poise-python'
 
 application node['deploy']['path'] do
-  git node['deploy']['source_url']
+  git node['deploy']['source_git_url']
   pip_requirements
   gunicorn do
     port 9001
