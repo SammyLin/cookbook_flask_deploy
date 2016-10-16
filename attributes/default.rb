@@ -2,7 +2,7 @@ default['deploy']['path'] = '/opt/my_first_python'
 default['deploy']['source_git_url'] = 'https://github.com/SammyLin/my_first_python.git'
 
 default['deploy']['gunicorn'] = {}
-default['deploy']['gunicorn']['syslog_enable'] = true
+default['deploy']['gunicorn']['syslog_enable'] = 'True'
 default['deploy']['gunicorn']['syslog_prefix'] = 'gunicorn'
 default['deploy']['gunicorn']['syslog_facility'] = 'daemon'
 default['deploy']['gunicorn']['loglevel'] = 'info'
