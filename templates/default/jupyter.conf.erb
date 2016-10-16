@@ -1,4 +1,4 @@
-description "uWSGI instance to serve <%= @app_name %>"
+description "jupyter service"
 author "Sammy Lin <sammylintw@gmail.com>"
 start on startup
 stop on shutdown
@@ -9,5 +9,5 @@ respawn limit 10 5
 script
   su - <%= node['deploy']['deploy_user'] %> -c "cd <%= @deploy_path %> && \
   . .virtualenv/bin/activate && \
-  uwsgi --ini uwsgi.ini"
+  jupyter notebook --ip 0.0.0.0"
 end script
