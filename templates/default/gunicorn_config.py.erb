@@ -1,0 +1,7 @@
+syslog = <%= @gunicorn['syslog_enable'] %>
+syslog_prefix = "<%= @gunicorn['syslog_prefix'] %>"
+syslog_facility = "<%= @gunicorn['syslog_facility'] %>"
+
+loglevel = "<%= @gunicorn['loglevel'] %>"
+errorlog = "<%= @gunicorn['errorlog'] %>"
+accesslog = "<%= @gunicorn['accesslog'] %>"
