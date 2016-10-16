@@ -1,9 +1,9 @@
 app_name = node['deploy']['app_name']
 deploy_to = node['deploy']['path']
 
-include_recipe 'python'
-include_recipe 'user'
-include_recipe 'jupyter'
+include_recipe 'cookbook_flask_deploy::python'
+include_recipe 'cookbook_flask_deploy::user'
+include_recipe 'cookbook_flask_deploy::jupyter'
 
 application deploy_to do
   owner node['deploy']['deploy_user']
