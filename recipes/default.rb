@@ -1,5 +1,4 @@
 include_recipe 'poise-python'
-include_recipe 'monit'
 
 execute 'devtools' do
   command 'yum -y groupinstall "Development Tools"'
