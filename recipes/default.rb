@@ -1,21 +1,26 @@
 include_recipe 'poise-python'
 
-application node['deploy']['path'] do
-  git node['deploy']['source_git_url']
-  pip_requirements
-
-  directory '/etc/gunicorn' do
-    mode '0755'
-  end
-  template '/etc/gunicorn/gunicorn_config.py' do
-    source 'gunicorn_config.py.erb'
-    mode '0644'
-    variables(gunicorn:  node['deploy']['gunicorn'])
-  end
-
-  gunicorn do
-    port 9001
-    config '/etc/gunicorn/gunicorn_config.py'
-  end
+%w(uwsgi jupyter).each do |package|
+  python_package package
 end
 
+deploy_to = node['deploy']['path']
+
+application deploy_to do
+  git node['deploy']['source_git_url']
+  virtualenv
+  pip_requirements
+
+  directory "#{deploy_to}/log" do
+    mode '0755'
+  end
+
+  template "#{deploy_to}/uwsgi.ini" do
+    source 'uwsgi.ini.erb'
+    mode '0644'
+    variables(
+      app_name:    node['deploy']['app_name'],
+      deploy_path: deploy_to
+      )
+  end
+end

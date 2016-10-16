@@ -1,0 +1,10 @@
+[uwsgi]
+http = 0.0.0.0:8000
+chmod-socket = 664
+die-on-term = true
+socket = /tmp/<%= @app_name %>.sock
+venv = <%= @deploy_path %>/.virtualenv
+chdir = <%= @deploy_path %>
+logto = <%= @deploy_path %>/log/uwsgi.log
+module = main
+callable = app
